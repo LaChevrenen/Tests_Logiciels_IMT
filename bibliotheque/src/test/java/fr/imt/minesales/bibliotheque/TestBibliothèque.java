@@ -13,15 +13,18 @@ import java.util.List;
 
 class TestBibliothèque {
 
+	private Abonne mockAbonne;
 	private Bibliotheque mockBibliotheque;
-    private Abonne mockAbonne;
+	private Catalogue mockCatalogue;
+    private Emprunt mockEmprunt;
     private Livre mockLivre;
-    private Catalogue mockCatalogue;
 	
 	@BeforeEach
 	public void setUp() {
-		bibliotheque = mock(Bibliotheque.class); 
-        mockAbonne = mock(Abonne.class);
+		mockAbonne = mock(Abonne.class);
+		mockBibliotheque = mock(Bibliotheque.class);
+		mockCatalogue = mock(Catalogue.class);
+		mockEmprunt = mock(Emprunt.class);
         mockLivre = mock(Livre.class);
 	}
 	
