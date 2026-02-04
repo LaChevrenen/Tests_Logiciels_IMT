@@ -47,4 +47,9 @@ public class Bibliotheque {
 	public void notifierRetard(Abonne abonne, String isbn) {
 		// À implémenter
 	}
+
+	public Livre getLivre(String isbn) {
+		// À implémenter
+		return null;
+	}
 }

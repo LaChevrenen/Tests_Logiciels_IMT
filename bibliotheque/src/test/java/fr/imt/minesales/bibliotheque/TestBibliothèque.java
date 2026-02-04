@@ -227,6 +227,14 @@ class TestBibliothèque {
 		doNothing().when(bibliotheque).identification(abonne);
 		bibliotheque.identification(abonne);
 
+		// Mock : créer un livre avec stock initial
+		Livre livre = new Livre("978-333", "Test Livre", "Roman", 2);
+		when(bibliotheque.getLivre("978-333")).thenReturn(livre);
+		
+		// Stock initial
+		int stockInitial = livre.getNbExemplaires();
+		assertEquals(2, stockInitial);
+
 		// Mock : emprunt réussit
 		when(bibliotheque.emprunt("978-333", abonne)).thenReturn(true);
 
@@ -236,6 +244,15 @@ class TestBibliothèque {
 		
 		// Vérifier que la méthode a bien été appelée
 		verify(bibliotheque).emprunt("978-333", abonne);
+		
+		// Mock : après emprunt, le stock a diminué
+		livre = new Livre("978-333", "Test Livre", "Roman", 1);
+		when(bibliotheque.getLivre("978-333")).thenReturn(livre);
+		
+		// Vérifier que le stock a baissé
+		int stockFinal = bibliotheque.getLivre("978-333").getNbExemplaires();
+		assertEquals(1, stockFinal);
+		assertEquals(stockInitial - 1, stockFinal);
 	}
 
 	// ------------------------------------------------------------
